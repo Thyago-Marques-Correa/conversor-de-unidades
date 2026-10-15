@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Conversor de Unidades</title>
+  <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<main>
+  <h1>Conversor de Unidades</h1>
+  <form th:action="@{/converter}" method="post">
+    <label for="valor">Valor</label>
+    <input id="valor" type="number" step="any" name="valor" th:value="${valor}" required>
+    <label for="tipo">Conversao</label>
+    <select id="tipo" name="tipo">
+      <option th:each="t : ${tipos}" th:value="${t.key}" th:text="${t.value}"
+              th:selected="${t.key == tipo}"></option>
+    </select>
+    <button type="submit">Converter</button>
+  </form>
+  <div class="resultado" th:if="${resultado != null}">
+    Resultado: <strong th:text="${resultado}"></strong>
+  </div>
+</main>
+</body>
+</html>
